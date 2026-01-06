@@ -19,6 +19,9 @@
 
       --shootBg:#ecfeff;
       --shootBorder:#06b6d4;
+
+      --btn:#111827;
+      --btn2:#374151;
     }
 
     *{box-sizing:border-box}
@@ -48,6 +51,7 @@
       border-radius:10px;
       font-size:13px;
       white-space:nowrap;
+      height:fit-content;
     }
     .version b{
       background:#111827;
@@ -65,20 +69,18 @@
     }
 
     .btn{
-      background:#111827;
+      background:var(--btn);
       color:#fff;
       padding:8px 12px;
-      border-radius:8px;
+      border-radius:10px;
       font-size:13px;
       text-decoration:none;
       display:inline-flex;
       align-items:center;
-      gap:6px;
+      gap:8px;
+      border:1px solid rgba(255,255,255,.08);
     }
-
-    .btn.secondary{
-      background:#374151;
-    }
+    .btn.secondary{background:var(--btn2);}
 
     main{padding:18px 0 30px;}
     .card{
@@ -125,23 +127,11 @@
 
     /* PRINT VERSION */
     @media print {
-      header, .actions, footer {
-        display: none !important;
-      }
-
-      body {
-        background: #fff;
-      }
-
-      .card {
-        box-shadow: none;
-        border: 1px solid #000;
-        page-break-inside: avoid;
-      }
-
-      h2 {
-        color: #000;
-      }
+      header, .actions, footer { display:none !important; }
+      body { background:#fff; }
+      .card { box-shadow:none; border:1px solid #000; page-break-inside:avoid; }
+      th { background:#fff; color:#000; }
+      .day-prep, .day-shoot { background:#fff; border-left:5px solid #000; }
     }
   </style>
 </head>
@@ -156,9 +146,9 @@
         <div class="meta">Gældende plan · del kun med involverede</div>
 
         <div class="actions">
-          <!-- Husk at indsætte korrekt URL hvis du vil -->
+          <!-- Sæt din rigtige URL ind her -->
           <a class="btn"
-             href="mailto:?subject=Produktionsplan – vers. 4.0&body=Her er linket til den opdaterede produktionsplan:%0A%0A[INDSÆT LINK HER]">
+             href="mailto:?subject=Produktionsplan – vers. 4.0&body=Her er linket til den opdaterede produktionsplan:%0A%0AINDSÆT_DIT_LINK_HER">
             📧 Del via e-mail
           </a>
 
@@ -175,8 +165,153 @@
   </div>
 </header>
 
-<!-- RESTEN AF DIT DOKUMENT ER UÆNDRET -->
-<!-- behold alle sektioner fra din nuværende version -->
+<main>
+  <div class="wrap">
+
+    <!-- OVERBLIK -->
+    <section class="card">
+      <h2>Overblik</h2>
+      <table>
+        <tbody>
+          <tr>
+            <th>Klargøringsdag</th>
+            <td><b>Lørdag 10. jan 2025</b> – prep / forberedelse</td>
+          </tr>
+          <tr>
+            <th>Optagedag</th>
+            <td><b>Søndag 11. jan 2025</b> – shoot</td>
+          </tr>
+          <tr>
+            <th>Film location</th>
+            <td>Føroya Fólkaháskúli, Háskúlavegur 14</td>
+          </tr>
+          <tr>
+            <th>Make-up</th>
+            <td>Mirjam Olsen, Stjørnuskotið, Niels Finsensgøta 22</td>
+          </tr>
+          <tr>
+            <th>Ansvarlig for location</th>
+            <td>Torkil Tórgarð (rektor), tel. +298 259281</td>
+          </tr>
+          <tr>
+            <th>Aftalt leje</th>
+            <td>200,- DKK (KOVBOY FILM sp/f)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="note">
+        OBS: Ingen data eller dokumenter fra Føroya Fólkaháskúli må vises i filmen.
+      </div>
+    </section>
+
+    <!-- CREW / CAST -->
+    <section class="card">
+      <h2>Crew</h2>
+      <table>
+        <thead>
+          <tr><th>Funktion</th><th>Navn</th><th>Telefon</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Producer</td><td><b>Michael Koba</b></td><td><a href="tel:+298591011">+298 591011</a></td></tr>
+          <tr><td>Fotograf / filmmaker</td><td><b>Thomas Koba</b></td><td><a href="tel:+298213457">+298 213457</a></td></tr>
+          <tr><td>Lys & foto</td><td><b>Hans Petur Hansen</b></td><td></td></tr>
+        </tbody>
+      </table>
+
+      <h2 style="margin-top:14px;">Skuespillere</h2>
+      <table>
+        <thead>
+          <tr><th>Navn</th><th>Telefon</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>Suni Poulsen</b></td><td><a href="tel:+298587742">+298 587742</a></td></tr>
+          <tr><td><b>Gitte Klein</b></td><td><a href="tel:+298730730">+298 730730</a></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- LØRDAG: PREP -->
+    <section class="card day-prep">
+      <h2>Lørdag 10. jan 2025 – klargøring (prep day)</h2>
+      <table>
+        <thead>
+          <tr><th>Tid</th><th>Aktivitet</th><th>Hvor / note</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="time">13:00</td>
+            <td>Forberedelse af film location</td>
+            <td>Føroya Fólkaháskúli (i henhold til aftale med rektor)</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SØNDAG: SHOOT -->
+    <section class="card day-shoot">
+      <h2>Søndag 11. jan 2025 – optagedag</h2>
+      <table>
+        <thead>
+          <tr><th>Tid</th><th>Hvad sker der</th><th>Hvor / note</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="time">09:00</td>
+            <td>Hans Petur & Thomas Koba møder op</td>
+            <td>Føroya Fólkaháskúli</td>
+          </tr>
+          <tr>
+            <td class="time">09:05</td>
+            <td>Klargøring af film location</td>
+            <td>Crew: Thomas Koba, Michael Koba, Hans Petur Hansen</td>
+          </tr>
+          <tr>
+            <td class="time">09:00</td>
+            <td>Gitte Klein møder til make-up</td>
+            <td>Stjørnuskotið, Niels Finsensgøta 22</td>
+          </tr>
+          <tr>
+            <td class="time">09:10</td>
+            <td>Suni Poulsen møder til make-up</td>
+            <td>Stjørnuskotið, Niels Finsensgøta 22</td>
+          </tr>
+          <tr>
+            <td class="time">09:30</td>
+            <td>Rundstykker og kaffe</td>
+            <td>På sættet (Føroya Fólkaháskúli)</td>
+          </tr>
+          <tr>
+            <td class="time">10:00</td>
+            <td><b>Optagelse påbegyndes</b></td>
+            <td>Føroya Fólkaháskúli</td>
+          </tr>
+          <tr>
+            <td class="time">15:00</td>
+            <td><b>SLUT</b></td>
+            <td>Wrap</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- REKVISITTER -->
+    <section class="card">
+      <h2>Rekvisitter / kostume</h2>
+      <table>
+        <thead>
+          <tr><th>Type</th><th>Detalje</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Kostume</td><td>Suni Poulsen møder i mørkt jakkesæt</td></tr>
+          <tr><td>Kostume</td><td>Gitte Klein møder i lyst tøj iht. aftale med Michael Koba og Thomas Koba</td></tr>
+          <tr><td>Rekvisit</td><td>Buet computerskærm og gamerstol</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+  </div>
+</main>
 
 <footer>
   Produktionsplan – vers. 4.0
