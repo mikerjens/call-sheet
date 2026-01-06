@@ -1,453 +1,225 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="da">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Produktionsplan</title>
-  <meta name="description" content="Letlæselig produktionsplan til web og mobil." />
+  <meta charset="UTF-8" />
+  <title>Produktionsplan – KRENKARIRNIR</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
-    :root{
-      --bg:#0b1020; --card:#111a33; --muted:#9fb0d0; --text:#e9eeff;
-      --line:#233057; --pill:#1a2750; --accent:#7aa7ff; --ok:#55d6a4;
-      --warn:#ffd27a;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-      --radius: 18px;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-    }
-    @media (prefers-color-scheme: light){
-      :root{ --bg:#f6f8ff; --card:#ffffff; --muted:#4d5c7a; --text:#0b1020; --line:#e6ebff; --pill:#eef3ff; --accent:#2a66ff; --shadow: 0 10px 24px rgba(0,0,0,.12);}
-    }
-    *{ box-sizing:border-box; }
-    body{
-      margin:0; font-family:var(--sans);
-      background: radial-gradient(1200px 600px at 10% 0%, rgba(122,167,255,.18), transparent 55%),
-                  radial-gradient(900px 500px at 90% 10%, rgba(85,214,164,.12), transparent 55%),
-                  var(--bg);
-      color:var(--text);
-    }
-    a{ color:var(--accent); text-decoration:none; }
-    a:hover{ text-decoration:underline; }
-    .wrap{ max-width:1100px; margin:0 auto; padding:22px 16px 44px; }
-
-    header{
-      display:flex; gap:14px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap;
-      margin-bottom:14px;
-    }
-    .title{
-      display:flex; flex-direction:column; gap:6px;
-    }
-    .title h1{
-      margin:0; font-size:26px; letter-spacing:-.02em;
-    }
-    .subtitle{
-      color:var(--muted); font-size:14px; line-height:1.35;
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #f5f6f8;
+      margin: 0;
+      padding: 0;
+      color: #1a1a1a;
     }
 
-    .toolbar{
-      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
-    }
-    .btn{
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.06);
-      color:var(--text);
-      padding:10px 12px;
-      border-radius:12px;
-      cursor:pointer;
-      font-weight:600;
-      box-shadow:0 2px 0 rgba(0,0,0,.12);
-    }
-    @media (prefers-color-scheme: light){
-      .btn{ background:rgba(0,0,0,.03); }
-    }
-    .btn:active{ transform:translateY(1px); }
-    .pill{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:7px 10px; border-radius:999px;
-      background:var(--pill); border:1px solid var(--line);
-      color:var(--muted); font-size:12px; font-weight:600;
-    }
-    .grid{
-      display:grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap:14px;
-      margin-top:14px;
-    }
-    @media (max-width: 900px){
-      .grid{ grid-template-columns:1fr; }
-    }
-    .card{
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      padding:16px;
-    }
-    @media (prefers-color-scheme: light){
-      .card{ background:#fff; }
-    }
-    .card h2{
-      margin:0 0 10px; font-size:16px;
-      letter-spacing:-.01em;
-    }
-    .kv{
-      display:grid;
-      grid-template-columns: 160px 1fr;
-      gap:8px 12px;
-      align-items:start;
-      font-size:14px;
-    }
-    @media (max-width: 540px){
-      .kv{ grid-template-columns: 1fr; }
-      .kv .k{ color:var(--muted); font-weight:700; }
-    }
-    .k{ color:var(--muted); font-weight:700; }
-    .v{ color:var(--text); }
-    .muted{ color:var(--muted); }
-
-    .timeline{
-      margin-top:10px;
-      display:flex; flex-direction:column; gap:10px;
-    }
-    .titem{
-      display:grid;
-      grid-template-columns: 92px 1fr;
-      gap:12px;
-      padding:10px 10px;
-      border-radius:14px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.04);
-    }
-    @media (prefers-color-scheme: light){
-      .titem{ background:rgba(0,0,0,.02); }
-    }
-    .time{
-      font-family:var(--mono);
-      font-weight:800;
-      letter-spacing:-.02em;
-      color:var(--text);
-    }
-    .desc{ color:var(--text); font-weight:600; }
-    .note{ color:var(--muted); font-size:13px; margin-top:4px; }
-
-    .list{
-      display:flex; flex-direction:column; gap:10px;
-    }
-    .li{
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:12px;
-      background:rgba(255,255,255,.04);
-    }
-    @media (prefers-color-scheme: light){
-      .li{ background:rgba(0,0,0,.02); }
-    }
-    .li strong{ display:block; margin-bottom:6px; }
-    .tag{
-      display:inline-flex;
-      padding:3px 8px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(122,167,255,.12);
-      color:var(--text);
-      font-size:12px;
-      font-weight:800;
-      margin-left:6px;
+    header {
+      background: #111;
+      color: white;
+      padding: 24px;
+      text-align: center;
     }
 
-    .foot{
-      margin-top:12px;
-      color:var(--muted);
-      font-size:12px;
-      line-height:1.35;
+    header h1 {
+      margin: 0;
+      font-size: 26px;
     }
 
-    /* Print */
-    @media print{
-      :root{ --bg:#fff; --text:#000; --muted:#333; --card:#fff; --line:#ddd; --shadow:none; }
-      body{ background:#fff; }
-      .btn, .pill[data-hide-print="1"], .hide-print{ display:none !important; }
-      .card{ box-shadow:none; }
-      a{ color:#000; text-decoration:none; }
+    header p {
+      margin: 6px 0 0;
+      opacity: 0.8;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 20px;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 6px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    table th {
+      text-align: left;
+      font-weight: 600;
+      padding: 8px;
+      background: #f0f0f0;
+      font-size: 14px;
+    }
+
+    table td {
+      padding: 8px;
+      border-bottom: 1px solid #eee;
+      font-size: 14px;
+      vertical-align: top;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 8px;
+      background: #111;
+      color: white;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+
+    .time {
+      white-space: nowrap;
+      font-weight: 600;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 12px;
+      opacity: 0.6;
+      margin: 40px 0 10px;
     }
   </style>
 </head>
+
 <body>
-  <div class="wrap">
-    <header>
-      <div class="title">
-        <h1>Produktionsplan</h1>
-        <div class="subtitle">
-          Letlæselig plan til mobil/desktop + print. <span class="muted">Opdatér indholdet i “DATA” nederst.</span>
-        </div>
-      </div>
 
-      <div class="toolbar">
-        <span class="pill" data-hide-print="1">⏱️ Auto-opdatering: <span id="autoEvery">5 min</span></span>
-        <button class="btn" type="button" onclick="window.print()">🖨️ Print / PDF</button>
-        <button class="btn" type="button" onclick="toggleDetails()">🔎 Vis/skjul detaljer</button>
-      </div>
-    </header>
+<header>
+  <h1>Produktionsplan – KRENKARIRNIR</h1>
+  <p>Opdateret og gældende for hele produktionen</p>
+</header>
 
-    <!-- DAG NAV -->
-    <div class="card">
-      <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between;">
-        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
-          <span class="pill">📅 <span id="dayTitle">Søndag 11. jan 2025</span></span>
-          <span class="pill">📍 <span id="dayLocationShort">Føroya Fólkaháskúli</span></span>
-        </div>
+<div class="container">
 
-        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
-          <label class="pill" style="cursor:pointer;">
-            Vælg dag:
-            <select id="daySelect" style="margin-left:8px; border-radius:10px; padding:6px 8px; border:1px solid var(--line); background:transparent; color:var(--text);">
-            </select>
-          </label>
-          <button class="btn hide-print" type="button" onclick="copyShareLink()">🔗 Kopiér link til denne dag</button>
-        </div>
-      </div>
-
-      <div class="foot">
-        Hvis du vil gøre det endnu mere “live”: brug din Google Doc som kilde og opdatér DATA manuelt når planen ændrer sig.
-        (Google Docs “publish” er super til workflow, men automatisk parsing kan være ustabil pga. format/HTML.) 
-      </div>
-    </div>
-
-    <div class="grid">
-      <!-- LEFT -->
-      <div class="card">
-        <h2>Overblik</h2>
-
-        <div class="kv" id="overviewKv">
-          <!-- filled by JS -->
-        </div>
-
-        <div style="height:12px"></div>
-
-        <h2>Dagsprogram</h2>
-        <div class="timeline" id="timeline">
-          <!-- filled by JS -->
-        </div>
-      </div>
-
-      <!-- RIGHT -->
-      <div class="card">
-        <h2>Kontakt & roller</h2>
-        <div class="list" id="people">
-          <!-- filled by JS -->
-        </div>
-
-        <div style="height:14px"></div>
-
-        <h2>Rekvisitter & noter</h2>
-        <div class="list" id="propsNotes">
-          <!-- filled by JS -->
-        </div>
-
-        <div class="foot" id="footerNote"></div>
-      </div>
-    </div>
+  <!-- OVERBLIK -->
+  <div class="card">
+    <h2>Overblik</h2>
+    <table>
+      <tr>
+        <th>Produktion</th>
+        <td>KRENKARIRNIR (kortfilm)</td>
+      </tr>
+      <tr>
+        <th>Producer</th>
+        <td>Michael Koba – KOVBOY FILM</td>
+      </tr>
+      <tr>
+        <th>Status</th>
+        <td><span class="badge">I produktion</span></td>
+      </tr>
+    </table>
   </div>
 
-  <script>
-    // ---------- UI helpers ----------
-    let SHOW_DETAILS = true;
+  <!-- OPTAGEDAG -->
+  <div class="card">
+    <h2>Optagedag – fuldt dagsprogram</h2>
 
-    function toggleDetails(){
-      SHOW_DETAILS = !SHOW_DETAILS;
-      document.documentElement.style.setProperty("--details", SHOW_DETAILS ? "block" : "none");
-      render();
-    }
+    <table>
+      <tr>
+        <th>Tid</th>
+        <th>Aktivitet</th>
+        <th>Note</th>
+      </tr>
 
-    function copyShareLink(){
-      const dayId = getSelectedDayId();
-      const url = new URL(window.location.href);
-      url.searchParams.set("day", dayId);
-      navigator.clipboard.writeText(url.toString());
-      alert("Link kopieret ✅");
-    }
+      <tr>
+        <td class="time">07:30</td>
+        <td>Call time – crew</td>
+        <td>Opsætning / klargøring</td>
+      </tr>
 
-    function getSelectedDayId(){
-      const sel = document.getElementById("daySelect");
-      return sel.value;
-    }
+      <tr>
+        <td class="time">08:00</td>
+        <td>Skuespillere ankommer</td>
+        <td>Make-up / kostume</td>
+      </tr>
 
-    // ---------- DATA (redigér her) ----------
-    const DATA = {
-      autoRefreshMinutes: 5,
-      days: [
-        {
-          id: "2025-01-11",
-          title: "Søndag 11. jan 2025",
-          locationShort: "Føroya Fólkaháskúli",
-          locationFull: "Føroya Fólkaháskúli, Háskúlavegur 14",
-          crew: [
-            { name: "Michael Koba", role: "Producer", phone: "+298591011" },
-            { name: "Thomas Koba", role: "Fotograf & filmmaker", phone: "+298213457" },
-            { name: "Hans Petur Hansen", role: "Lys & foto", phone: "" }
-          ],
-          cast: [
-            { name: "Suni Poulsen", role: "Skuespiller", phone: "+298587742" },
-            { name: "Gitte Klein", role: "Skuespiller", phone: "+298730730" }
-          ],
-          schedule: [
-            { time: "07:00", title: "Hans Petur og Thomas Koba møder og afhenter filmvogn á Hjalla", note: "" },
-            { time: "08:00", title: "Klargøring af film location", note: "Thomas Koba, Michael Koba og Hans Petur Hansen" },
-            { time: "08:00", title: "Gitte Klein møder til make-up i Stjørnuskotið", note: "" },
-            { time: "08:30", title: "Suni Poulsen møder til make-up i Stjørnuskotið", note: "" },
-            { time: "08:45", title: "Rundstykker og kaffe på sættet på location", note: "" },
-            { time: "09:00", title: "Optagelse påbegyndes på Føroya Fólkaháskúli", note: "" },
-            { time: "15:00", title: "SLUT", note: "" }
-          ],
-          props: [
-            "Suni Poulsen møder i mørkt jakkesæt",
-            "Gitte Klein møder i lyst tøj (i henhold til aftale med producer)",
-            "Buet computerskærm og gamerstol"
-          ],
-          notes: [
-            "Bliver endeligt bekræftet af Føroya Fólkaháskúli (forventes 6. jan. 2026)."
-          ]
-        }
-      ]
-    };
+      <tr>
+        <td class="time">09:00</td>
+        <td>Scene 1–3</td>
+        <td>Dialog / terapi-scene</td>
+      </tr>
 
-    // ---------- Render ----------
-    function buildDaySelect(){
-      const sel = document.getElementById("daySelect");
-      sel.innerHTML = "";
-      for(const d of DATA.days){
-        const opt = document.createElement("option");
-        opt.value = d.id;
-        opt.textContent = d.title;
-        sel.appendChild(opt);
-      }
+      <tr>
+        <td class="time">12:00</td>
+        <td>Frokost</td>
+        <td>30 min</td>
+      </tr>
 
-      // pick day from URL if provided
-      const url = new URL(window.location.href);
-      const day = url.searchParams.get("day");
-      if(day && DATA.days.some(x => x.id === day)){
-        sel.value = day;
-      }
-      sel.addEventListener("change", () => {
-        const u = new URL(window.location.href);
-        u.searchParams.set("day", sel.value);
-        history.replaceState(null, "", u.toString());
-        render();
-      });
-    }
+      <tr>
+        <td class="time">12:30</td>
+        <td>Scene 4–6</td>
+        <td>Flashback / nærbilleder</td>
+      </tr>
 
-    function render(){
-      document.getElementById("autoEvery").textContent = DATA.autoRefreshMinutes + " min";
+      <tr>
+        <td class="time">16:30</td>
+        <td>Wrap</td>
+        <td>Nedpakning</td>
+      </tr>
+    </table>
+  </div>
 
-      const dayId = getSelectedDayId();
-      const d = DATA.days.find(x => x.id === dayId) || DATA.days[0];
+  <!-- CAST -->
+  <div class="card">
+    <h2>Skuespillere</h2>
+    <table>
+      <tr>
+        <th>Navn</th>
+        <th>Rolle</th>
+      </tr>
+      <tr>
+        <td>[Navn]</td>
+        <td>Hovedrolle</td>
+      </tr>
+      <tr>
+        <td>[Navn]</td>
+        <td>Birolle</td>
+      </tr>
+    </table>
+  </div>
 
-      document.getElementById("dayTitle").textContent = d.title;
-      document.getElementById("dayLocationShort").textContent = d.locationShort;
+  <!-- CREW -->
+  <div class="card">
+    <h2>Crew</h2>
+    <table>
+      <tr>
+        <th>Funktion</th>
+        <th>Navn</th>
+      </tr>
+      <tr>
+        <td>Instruktør</td>
+        <td>[Navn]</td>
+      </tr>
+      <tr>
+        <td>Foto</td>
+        <td>[Navn]</td>
+      </tr>
+      <tr>
+        <td>Lyd</td>
+        <td>[Navn]</td>
+      </tr>
+    </table>
+  </div>
 
-      // Overview KV
-      const kv = document.getElementById("overviewKv");
-      kv.innerHTML = "";
+</div>
 
-      const kvRows = [
-        ["Dato", d.title],
-        ["Film location", d.locationFull],
-        ["Crew", d.crew.map(p => p.name).join(", ")],
-        ["Skuespillere", d.cast.map(p => p.name).join(", ")],
-        ["Call (første)", d.schedule[0]?.time || "-"],
-        ["Wrap (slut)", d.schedule[d.schedule.length - 1]?.time || "-"]
-      ];
+<footer>
+  Intern produktionsplan – del kun med involverede
+</footer>
 
-      for(const [k, v] of kvRows){
-        const kEl = document.createElement("div");
-        kEl.className = "k";
-        kEl.textContent = k;
-
-        const vEl = document.createElement("div");
-        vEl.className = "v";
-        vEl.textContent = v;
-
-        kv.appendChild(kEl);
-        kv.appendChild(vEl);
-      }
-
-      // Timeline
-      const tl = document.getElementById("timeline");
-      tl.innerHTML = "";
-      for(const s of d.schedule){
-        const item = document.createElement("div");
-        item.className = "titem";
-        item.innerHTML = `
-          <div class="time">Kl. ${escapeHtml(s.time)}</div>
-          <div>
-            <div class="desc">${escapeHtml(s.title)}</div>
-            ${SHOW_DETAILS && s.note ? `<div class="note">${escapeHtml(s.note)}</div>` : ``}
-          </div>
-        `;
-        tl.appendChild(item);
-      }
-
-      // People
-      const people = document.getElementById("people");
-      people.innerHTML = "";
-
-      people.appendChild(personBlock("CREW", d.crew, "Crew"));
-      people.appendChild(personBlock("SKUESPILLERE", d.cast, "Cast"));
-
-      // Props + Notes
-      const pn = document.getElementById("propsNotes");
-      pn.innerHTML = "";
-
-      const propsCard = document.createElement("div");
-      propsCard.className = "li";
-      propsCard.innerHTML = `<strong>Rekvisitter <span class="tag">PROPS</span></strong>` +
-        `<div class="muted">${d.props.map(x => "• " + escapeHtml(x)).join("<br>")}</div>`;
-      pn.appendChild(propsCard);
-
-      const notesCard = document.createElement("div");
-      notesCard.className = "li";
-      notesCard.innerHTML = `<strong>Noter <span class="tag">NOTE</span></strong>` +
-        `<div class="muted">${d.notes.map(x => "• " + escapeHtml(x)).join("<br>")}</div>`;
-      pn.appendChild(notesCard);
-
-      // Footer note
-      document.getElementById("footerNote").textContent =
-        "Sidst opdateret: " + new Date().toLocaleString("da-DK") +
-        " • Del linket til en specifik dag med 🔗 knappen.";
-    }
-
-    function personBlock(title, arr, label){
-      const wrap = document.createElement("div");
-      wrap.className = "li";
-      wrap.innerHTML = `<strong>${escapeHtml(title)} <span class="tag">${escapeHtml(label)}</span></strong>`;
-
-      const lines = arr.map(p => {
-        const phone = p.phone ? ` • <span class="muted">${escapeHtml(p.phone)}</span>` : "";
-        const role = p.role ? ` — <span class="muted">${escapeHtml(p.role)}</span>` : "";
-        return `• <span style="font-weight:800">${escapeHtml(p.name)}</span>${role}${SHOW_DETAILS ? phone : ""}`;
-      }).join("<br>");
-
-      const div = document.createElement("div");
-      div.innerHTML = `<div>${lines || "<span class='muted'>Ingen</span>"}</div>`;
-      wrap.appendChild(div);
-      return wrap;
-    }
-
-    function escapeHtml(str){
-      return (str ?? "").toString()
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-    }
-
-    // Init
-    buildDaySelect();
-    render();
-
-    // Optional: auto refresh render (doesn't fetch new data – only updates "last updated" and keeps UI alive)
-    setInterval(() => render(), DATA.autoRefreshMinutes * 60 * 1000);
-  </script>
 </body>
 </html>
