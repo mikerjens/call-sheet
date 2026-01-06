@@ -3,305 +3,451 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Produktionsplan – Søndag 11. jan 2025</title>
+  <title>Produktionsplan</title>
+  <meta name="description" content="Letlæselig produktionsplan til web og mobil." />
   <style>
     :root{
-      --bg:#0b1220;
-      --card:#111a2e;
-      --text:#eaf1ff;
-      --muted:#9fb0d0;
-      --line:rgba(255,255,255,.10);
-      --accent:rgba(106,168,255,.14);
-      --accent2:rgba(73,209,126,.12);
+      --bg:#0b1020; --card:#111a33; --muted:#9fb0d0; --text:#e9eeff;
+      --line:#233057; --pill:#1a2750; --accent:#7aa7ff; --ok:#55d6a4;
+      --warn:#ffd27a;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
     }
-    *{box-sizing:border-box}
+    @media (prefers-color-scheme: light){
+      :root{ --bg:#f6f8ff; --card:#ffffff; --muted:#4d5c7a; --text:#0b1020; --line:#e6ebff; --pill:#eef3ff; --accent:#2a66ff; --shadow: 0 10px 24px rgba(0,0,0,.12);}
+    }
+    *{ box-sizing:border-box; }
     body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      background:
-        radial-gradient(1000px 500px at 20% 0%, var(--accent), transparent 60%),
-        radial-gradient(900px 500px at 85% 5%, var(--accent2), transparent 60%),
-        var(--bg);
+      margin:0; font-family:var(--sans);
+      background: radial-gradient(1200px 600px at 10% 0%, rgba(122,167,255,.18), transparent 55%),
+                  radial-gradient(900px 500px at 90% 10%, rgba(85,214,164,.12), transparent 55%),
+                  var(--bg);
       color:var(--text);
-      line-height:1.35;
     }
-    .wrap{max-width:1100px;margin:0 auto;padding:22px}
+    a{ color:var(--accent); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+    .wrap{ max-width:1100px; margin:0 auto; padding:22px 16px 44px; }
+
     header{
-      display:flex;flex-wrap:wrap;gap:14px;
-      align-items:flex-end;justify-content:space-between;
-      border:1px solid var(--line);
-      background: rgba(17,26,46,.70);
-      border-radius:18px;
-      padding:16px 16px 14px;
+      display:flex; gap:14px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap;
+      margin-bottom:14px;
     }
-    h1{margin:0;font-size:22px}
-    .sub{margin-top:6px;color:var(--muted);font-size:14px}
-    .badges{display:flex;gap:8px;flex-wrap:wrap}
-    .badge{
-      font-size:13px;
-      padding:8px 10px;
+    .title{
+      display:flex; flex-direction:column; gap:6px;
+    }
+    .title h1{
+      margin:0; font-size:26px; letter-spacing:-.02em;
+    }
+    .subtitle{
+      color:var(--muted); font-size:14px; line-height:1.35;
+    }
+
+    .toolbar{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+    }
+    .btn{
       border:1px solid var(--line);
-      border-radius:999px;
-      background: rgba(255,255,255,.05);
-      white-space:nowrap;
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:12px;
+      cursor:pointer;
+      font-weight:600;
+      box-shadow:0 2px 0 rgba(0,0,0,.12);
+    }
+    @media (prefers-color-scheme: light){
+      .btn{ background:rgba(0,0,0,.03); }
+    }
+    .btn:active{ transform:translateY(1px); }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 10px; border-radius:999px;
+      background:var(--pill); border:1px solid var(--line);
+      color:var(--muted); font-size:12px; font-weight:600;
     }
     .grid{
       display:grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1.25fr .75fr;
       gap:14px;
       margin-top:14px;
     }
-    @media(max-width:900px){
-      .grid{grid-template-columns:1fr}
+    @media (max-width: 900px){
+      .grid{ grid-template-columns:1fr; }
     }
-    .card, .section{
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
       border:1px solid var(--line);
-      background: rgba(17,26,46,.70);
-      border-radius:18px;
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
       padding:16px;
     }
-    h2{margin:0 0 10px;font-size:16px}
-    table{
-      width:100%;
-      border-collapse:separate;
-      border-spacing:0;
-      overflow:hidden;
-      border:1px solid var(--line);
-      border-radius:16px;
-      background: rgba(255,255,255,.03);
+    @media (prefers-color-scheme: light){
+      .card{ background:#fff; }
     }
-    th, td{
-      text-align:left;
-      padding:10px 12px;
-      border-bottom:1px solid var(--line);
-      vertical-align:top;
+    .card h2{
+      margin:0 0 10px; font-size:16px;
+      letter-spacing:-.01em;
+    }
+    .kv{
+      display:grid;
+      grid-template-columns: 160px 1fr;
+      gap:8px 12px;
+      align-items:start;
       font-size:14px;
     }
-    th{
-      font-size:12px;
-      color:var(--muted);
-      letter-spacing:.2px;
-      background: rgba(106,168,255,.10);
+    @media (max-width: 540px){
+      .kv{ grid-template-columns: 1fr; }
+      .kv .k{ color:var(--muted); font-weight:700; }
     }
-    tr:last-child td{border-bottom:none}
-    .muted{color:var(--muted);font-size:13px}
-    .note{
+    .k{ color:var(--muted); font-weight:700; }
+    .v{ color:var(--text); }
+    .muted{ color:var(--muted); }
+
+    .timeline{
       margin-top:10px;
-      border-top:1px dashed var(--line);
-      padding-top:10px;
-      color:var(--muted);
-      font-size:13px;
+      display:flex; flex-direction:column; gap:10px;
     }
-    .section{margin-top:14px}
-    .small{font-size:12px;color:var(--muted)}
-    .hl{
-      display:inline-block;
-      padding:2px 8px;
-      border-radius:999px;
+    .titem{
+      display:grid;
+      grid-template-columns: 92px 1fr;
+      gap:12px;
+      padding:10px 10px;
+      border-radius:14px;
       border:1px solid var(--line);
-      background: rgba(106,168,255,.12);
-      font-size:12px;
-      color:var(--text);
-      margin-left:6px;
+      background:rgba(255,255,255,.04);
+    }
+    @media (prefers-color-scheme: light){
+      .titem{ background:rgba(0,0,0,.02); }
     }
     .time{
+      font-family:var(--mono);
       font-weight:800;
-      white-space:nowrap;
+      letter-spacing:-.02em;
+      color:var(--text);
+    }
+    .desc{ color:var(--text); font-weight:600; }
+    .note{ color:var(--muted); font-size:13px; margin-top:4px; }
+
+    .list{
+      display:flex; flex-direction:column; gap:10px;
+    }
+    .li{
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:12px;
+      background:rgba(255,255,255,.04);
+    }
+    @media (prefers-color-scheme: light){
+      .li{ background:rgba(0,0,0,.02); }
+    }
+    .li strong{ display:block; margin-bottom:6px; }
+    .tag{
+      display:inline-flex;
+      padding:3px 8px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(122,167,255,.12);
+      color:var(--text);
+      font-size:12px;
+      font-weight:800;
+      margin-left:6px;
+    }
+
+    .foot{
+      margin-top:12px;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.35;
+    }
+
+    /* Print */
+    @media print{
+      :root{ --bg:#fff; --text:#000; --muted:#333; --card:#fff; --line:#ddd; --shadow:none; }
+      body{ background:#fff; }
+      .btn, .pill[data-hide-print="1"], .hide-print{ display:none !important; }
+      .card{ box-shadow:none; }
+      a{ color:#000; text-decoration:none; }
     }
   </style>
 </head>
-
 <body>
   <div class="wrap">
-
     <header>
-      <div>
-        <h1>FILM PRODUKTIONSPLAN <span class="hl">vers. 3.0</span></h1>
-        <div class="sub">
-          <b>Søndag 11. jan 2025</b> • Location: <b>Føroya Fólkaháskúli</b>, Háskúlavegur 14
+      <div class="title">
+        <h1>Produktionsplan</h1>
+        <div class="subtitle">
+          Letlæselig plan til mobil/desktop + print. <span class="muted">Opdatér indholdet i “DATA” nederst.</span>
         </div>
       </div>
-      <div class="badges">
-        <div class="badge">Crew call: <b>07:00</b></div>
-        <div class="badge">Make-up: <b>08:00–08:30</b></div>
-        <div class="badge">Shoot start: <b>09:00</b></div>
-        <div class="badge">Slut: <b>15:00</b></div>
+
+      <div class="toolbar">
+        <span class="pill" data-hide-print="1">⏱️ Auto-opdatering: <span id="autoEvery">5 min</span></span>
+        <button class="btn" type="button" onclick="window.print()">🖨️ Print / PDF</button>
+        <button class="btn" type="button" onclick="toggleDetails()">🔎 Vis/skjul detaljer</button>
       </div>
     </header>
 
-    <div class="grid">
-      <div class="card">
-        <h2>Location / key info</h2>
-        <table>
-          <tbody>
-            <tr>
-              <th style="width:180px;">Film location</th>
-              <td><b>Føroya Fólkaháskúli</b><br><span class="muted">Háskúlavegur 14</span></td>
-            </tr>
-            <tr>
-              <th>Dato</th>
-              <td>Søndag 11. jan 2025</td>
-            </tr>
-            <tr>
-              <th>Optagetid</th>
-              <td>Optagelse starter <b>09:00</b> • Slutter <b>15:00</b></td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="note">
-          Location bliver endeligt bekræftet af Føroya Fólkaháskúli (forventes bekræftet i dag). <span class="muted">(jf. planen)</span>
+    <!-- DAG NAV -->
+    <div class="card">
+      <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between;">
+        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+          <span class="pill">📅 <span id="dayTitle">Søndag 11. jan 2025</span></span>
+          <span class="pill">📍 <span id="dayLocationShort">Føroya Fólkaháskúli</span></span>
+        </div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+          <label class="pill" style="cursor:pointer;">
+            Vælg dag:
+            <select id="daySelect" style="margin-left:8px; border-radius:10px; padding:6px 8px; border:1px solid var(--line); background:transparent; color:var(--text);">
+            </select>
+          </label>
+          <button class="btn hide-print" type="button" onclick="copyShareLink()">🔗 Kopiér link til denne dag</button>
         </div>
       </div>
 
+      <div class="foot">
+        Hvis du vil gøre det endnu mere “live”: brug din Google Doc som kilde og opdatér DATA manuelt når planen ændrer sig.
+        (Google Docs “publish” er super til workflow, men automatisk parsing kan være ustabil pga. format/HTML.) 
+      </div>
+    </div>
+
+    <div class="grid">
+      <!-- LEFT -->
       <div class="card">
-        <h2>Contacts / Crew</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Navn</th>
-              <th>Rolle</th>
-              <th>Telefon</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Michael Koba</td>
-              <td>Producer</td>
-              <td>+298 591011</td>
-            </tr>
-            <tr>
-              <td>Thomas Koba</td>
-              <td>Fotograf &amp; filmmaker</td>
-              <td>+298 213457</td>
-            </tr>
-            <tr>
-              <td>Hans Petur Hansen</td>
-              <td>Lys &amp; foto</td>
-              <td class="muted">—</td>
-            </tr>
-          </tbody>
-        </table>
+        <h2>Overblik</h2>
 
-        <h2 style="margin-top:14px;">Cast</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Navn</th>
-              <th>Telefon</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Suni Poulsen</td>
-              <td>+298 587742</td>
-            </tr>
-            <tr>
-              <td>Gitte Klein</td>
-              <td>+298 730730</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="kv" id="overviewKv">
+          <!-- filled by JS -->
+        </div>
+
+        <div style="height:12px"></div>
+
+        <h2>Dagsprogram</h2>
+        <div class="timeline" id="timeline">
+          <!-- filled by JS -->
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="card">
+        <h2>Kontakt & roller</h2>
+        <div class="list" id="people">
+          <!-- filled by JS -->
+        </div>
+
+        <div style="height:14px"></div>
+
+        <h2>Rekvisitter & noter</h2>
+        <div class="list" id="propsNotes">
+          <!-- filled by JS -->
+        </div>
+
+        <div class="foot" id="footerNote"></div>
       </div>
     </div>
-
-    <div class="section">
-      <h2>Hele dagsprogrammet</h2>
-      <table>
-        <thead>
-          <tr>
-            <th style="width:90px;">Tid</th>
-            <th>Hvad sker der?</th>
-            <th style="width:320px;">Hvem</th>
-            <th style="width:240px;">Sted</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="time">07:00</td>
-            <td>Hans Petur og Thomas møder og afhenter filmvogn á Hjalla <span class="hl">crew call</span></td>
-            <td>Hans Petur Hansen, Thomas Koba</td>
-            <td>Hjalla</td>
-          </tr>
-
-          <tr>
-            <td class="time">08:00</td>
-            <td>Klargøring af film location <span class="hl">setup</span></td>
-            <td>Thomas Koba, Michael Koba, Hans Petur Hansen</td>
-            <td>Føroya Fólkaháskúli</td>
-          </tr>
-
-          <tr>
-            <td class="time">08:00</td>
-            <td>Gitte Klein møder til make-up <span class="hl">make-up</span></td>
-            <td>Gitte Klein</td>
-            <td>Stjørnuskotið</td>
-          </tr>
-
-          <tr>
-            <td class="time">08:30</td>
-            <td>Suni Poulsen møder til make-up <span class="hl">make-up</span></td>
-            <td>Suni Poulsen</td>
-            <td>Stjørnuskotið</td>
-          </tr>
-
-          <tr>
-            <td class="time">08:45</td>
-            <td>Rundstykker og kaffe på sættet <span class="hl">catering</span></td>
-            <td>Alle</td>
-            <td>På location</td>
-          </tr>
-
-          <tr>
-            <td class="time">09:00</td>
-            <td>Optagelse påbegyndes <span class="hl">shoot</span></td>
-            <td>Alle</td>
-            <td>Føroya Fólkaháskúli</td>
-          </tr>
-
-          <tr>
-            <td class="time">15:00</td>
-            <td>SLUT <span class="hl">wrap</span></td>
-            <td>Alle (crew pakker ned)</td>
-            <td>Føroya Fólkaháskúli</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="note">
-        Hvis du vil have pauser / frokost tydeligt ind i planen, så skal de tidspunkter skrives ind i dokumentet – ellers risikerer vi at opfinde noget, der ikke er aftalt.
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>Rekvisitter / kostume</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Hvem / hvad</th>
-            <th>Aftale</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Suni Poulsen</td>
-            <td>Møder i <b>mørkt jakkesæt</b></td>
-          </tr>
-          <tr>
-            <td>Gitte Klein</td>
-            <td>Møder i <b>lyst tøj</b> (i henhold til aftale med producer, Michael Koba)</td>
-          </tr>
-          <tr>
-            <td>Props</td>
-            <td>Buet computerskærm og gamerstol</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="small" style="margin-top:14px;">
-      Kilde: “Produktionsplan 2.0” :contentReference[oaicite:1]{index=1} • Web-version: 1.0
-    </div>
-
   </div>
+
+  <script>
+    // ---------- UI helpers ----------
+    let SHOW_DETAILS = true;
+
+    function toggleDetails(){
+      SHOW_DETAILS = !SHOW_DETAILS;
+      document.documentElement.style.setProperty("--details", SHOW_DETAILS ? "block" : "none");
+      render();
+    }
+
+    function copyShareLink(){
+      const dayId = getSelectedDayId();
+      const url = new URL(window.location.href);
+      url.searchParams.set("day", dayId);
+      navigator.clipboard.writeText(url.toString());
+      alert("Link kopieret ✅");
+    }
+
+    function getSelectedDayId(){
+      const sel = document.getElementById("daySelect");
+      return sel.value;
+    }
+
+    // ---------- DATA (redigér her) ----------
+    const DATA = {
+      autoRefreshMinutes: 5,
+      days: [
+        {
+          id: "2025-01-11",
+          title: "Søndag 11. jan 2025",
+          locationShort: "Føroya Fólkaháskúli",
+          locationFull: "Føroya Fólkaháskúli, Háskúlavegur 14",
+          crew: [
+            { name: "Michael Koba", role: "Producer", phone: "+298591011" },
+            { name: "Thomas Koba", role: "Fotograf & filmmaker", phone: "+298213457" },
+            { name: "Hans Petur Hansen", role: "Lys & foto", phone: "" }
+          ],
+          cast: [
+            { name: "Suni Poulsen", role: "Skuespiller", phone: "+298587742" },
+            { name: "Gitte Klein", role: "Skuespiller", phone: "+298730730" }
+          ],
+          schedule: [
+            { time: "07:00", title: "Hans Petur og Thomas Koba møder og afhenter filmvogn á Hjalla", note: "" },
+            { time: "08:00", title: "Klargøring af film location", note: "Thomas Koba, Michael Koba og Hans Petur Hansen" },
+            { time: "08:00", title: "Gitte Klein møder til make-up i Stjørnuskotið", note: "" },
+            { time: "08:30", title: "Suni Poulsen møder til make-up i Stjørnuskotið", note: "" },
+            { time: "08:45", title: "Rundstykker og kaffe på sættet på location", note: "" },
+            { time: "09:00", title: "Optagelse påbegyndes på Føroya Fólkaháskúli", note: "" },
+            { time: "15:00", title: "SLUT", note: "" }
+          ],
+          props: [
+            "Suni Poulsen møder i mørkt jakkesæt",
+            "Gitte Klein møder i lyst tøj (i henhold til aftale med producer)",
+            "Buet computerskærm og gamerstol"
+          ],
+          notes: [
+            "Bliver endeligt bekræftet af Føroya Fólkaháskúli (forventes 6. jan. 2026)."
+          ]
+        }
+      ]
+    };
+
+    // ---------- Render ----------
+    function buildDaySelect(){
+      const sel = document.getElementById("daySelect");
+      sel.innerHTML = "";
+      for(const d of DATA.days){
+        const opt = document.createElement("option");
+        opt.value = d.id;
+        opt.textContent = d.title;
+        sel.appendChild(opt);
+      }
+
+      // pick day from URL if provided
+      const url = new URL(window.location.href);
+      const day = url.searchParams.get("day");
+      if(day && DATA.days.some(x => x.id === day)){
+        sel.value = day;
+      }
+      sel.addEventListener("change", () => {
+        const u = new URL(window.location.href);
+        u.searchParams.set("day", sel.value);
+        history.replaceState(null, "", u.toString());
+        render();
+      });
+    }
+
+    function render(){
+      document.getElementById("autoEvery").textContent = DATA.autoRefreshMinutes + " min";
+
+      const dayId = getSelectedDayId();
+      const d = DATA.days.find(x => x.id === dayId) || DATA.days[0];
+
+      document.getElementById("dayTitle").textContent = d.title;
+      document.getElementById("dayLocationShort").textContent = d.locationShort;
+
+      // Overview KV
+      const kv = document.getElementById("overviewKv");
+      kv.innerHTML = "";
+
+      const kvRows = [
+        ["Dato", d.title],
+        ["Film location", d.locationFull],
+        ["Crew", d.crew.map(p => p.name).join(", ")],
+        ["Skuespillere", d.cast.map(p => p.name).join(", ")],
+        ["Call (første)", d.schedule[0]?.time || "-"],
+        ["Wrap (slut)", d.schedule[d.schedule.length - 1]?.time || "-"]
+      ];
+
+      for(const [k, v] of kvRows){
+        const kEl = document.createElement("div");
+        kEl.className = "k";
+        kEl.textContent = k;
+
+        const vEl = document.createElement("div");
+        vEl.className = "v";
+        vEl.textContent = v;
+
+        kv.appendChild(kEl);
+        kv.appendChild(vEl);
+      }
+
+      // Timeline
+      const tl = document.getElementById("timeline");
+      tl.innerHTML = "";
+      for(const s of d.schedule){
+        const item = document.createElement("div");
+        item.className = "titem";
+        item.innerHTML = `
+          <div class="time">Kl. ${escapeHtml(s.time)}</div>
+          <div>
+            <div class="desc">${escapeHtml(s.title)}</div>
+            ${SHOW_DETAILS && s.note ? `<div class="note">${escapeHtml(s.note)}</div>` : ``}
+          </div>
+        `;
+        tl.appendChild(item);
+      }
+
+      // People
+      const people = document.getElementById("people");
+      people.innerHTML = "";
+
+      people.appendChild(personBlock("CREW", d.crew, "Crew"));
+      people.appendChild(personBlock("SKUESPILLERE", d.cast, "Cast"));
+
+      // Props + Notes
+      const pn = document.getElementById("propsNotes");
+      pn.innerHTML = "";
+
+      const propsCard = document.createElement("div");
+      propsCard.className = "li";
+      propsCard.innerHTML = `<strong>Rekvisitter <span class="tag">PROPS</span></strong>` +
+        `<div class="muted">${d.props.map(x => "• " + escapeHtml(x)).join("<br>")}</div>`;
+      pn.appendChild(propsCard);
+
+      const notesCard = document.createElement("div");
+      notesCard.className = "li";
+      notesCard.innerHTML = `<strong>Noter <span class="tag">NOTE</span></strong>` +
+        `<div class="muted">${d.notes.map(x => "• " + escapeHtml(x)).join("<br>")}</div>`;
+      pn.appendChild(notesCard);
+
+      // Footer note
+      document.getElementById("footerNote").textContent =
+        "Sidst opdateret: " + new Date().toLocaleString("da-DK") +
+        " • Del linket til en specifik dag med 🔗 knappen.";
+    }
+
+    function personBlock(title, arr, label){
+      const wrap = document.createElement("div");
+      wrap.className = "li";
+      wrap.innerHTML = `<strong>${escapeHtml(title)} <span class="tag">${escapeHtml(label)}</span></strong>`;
+
+      const lines = arr.map(p => {
+        const phone = p.phone ? ` • <span class="muted">${escapeHtml(p.phone)}</span>` : "";
+        const role = p.role ? ` — <span class="muted">${escapeHtml(p.role)}</span>` : "";
+        return `• <span style="font-weight:800">${escapeHtml(p.name)}</span>${role}${SHOW_DETAILS ? phone : ""}`;
+      }).join("<br>");
+
+      const div = document.createElement("div");
+      div.innerHTML = `<div>${lines || "<span class='muted'>Ingen</span>"}</div>`;
+      wrap.appendChild(div);
+      return wrap;
+    }
+
+    function escapeHtml(str){
+      return (str ?? "").toString()
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    // Init
+    buildDaySelect();
+    render();
+
+    // Optional: auto refresh render (doesn't fetch new data – only updates "last updated" and keeps UI alive)
+    setInterval(() => render(), DATA.autoRefreshMinutes * 60 * 1000);
+  </script>
 </body>
 </html>
