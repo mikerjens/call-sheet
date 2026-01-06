@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Call Sheet – 8. jan 2025</title>
+  <title>Produktionsplan – Søndag 11. jan 2025</title>
   <style>
     :root{
       --bg:#0b1220;
@@ -11,14 +11,18 @@
       --text:#eaf1ff;
       --muted:#9fb0d0;
       --line:rgba(255,255,255,.10);
-      --accent:rgba(106,168,255,.18);
+      --accent:rgba(106,168,255,.14);
+      --accent2:rgba(73,209,126,.12);
     }
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      background: var(--bg);
-      color: var(--text);
+      background:
+        radial-gradient(1000px 500px at 20% 0%, var(--accent), transparent 60%),
+        radial-gradient(900px 500px at 85% 5%, var(--accent2), transparent 60%),
+        var(--bg);
+      color:var(--text);
       line-height:1.35;
     }
     .wrap{max-width:1100px;margin:0 auto;padding:22px}
@@ -26,7 +30,7 @@
       display:flex;flex-wrap:wrap;gap:14px;
       align-items:flex-end;justify-content:space-between;
       border:1px solid var(--line);
-      background: rgba(17,26,46,.65);
+      background: rgba(17,26,46,.70);
       border-radius:18px;
       padding:16px 16px 14px;
     }
@@ -53,25 +57,11 @@
     }
     .card{
       border:1px solid var(--line);
-      background: rgba(17,26,46,.65);
+      background: rgba(17,26,46,.70);
       border-radius:18px;
       padding:16px;
     }
     h2{margin:0 0 10px;font-size:16px}
-    .meta{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px;
-    }
-    .pill{
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:10px 12px;
-      background: rgba(255,255,255,.04);
-      font-size:13px;
-    }
-    .pill b{display:block;color:var(--muted);font-size:12px;margin-bottom:4px}
-
     table{
       width:100%;
       border-collapse:separate;
@@ -106,7 +96,7 @@
     .section{
       margin-top:14px;
       border:1px solid var(--line);
-      background: rgba(17,26,46,.65);
+      background: rgba(17,26,46,.70);
       border-radius:18px;
       padding:16px;
     }
@@ -129,28 +119,40 @@
 
     <header>
       <div>
-        <h1>CALL SHEET – Torsdag 8. januar 2025</h1>
-        <div class="sub">Main location: <b>Tórgarðsgøta 15</b> • Wrap: <b>20:00</b></div>
+        <h1>FILM PRODUKTIONSPLAN <span class="hl">ver. 3.0</span></h1>
+        <div class="sub">
+          <b>Søndag 11. januar 2025</b> • Location: <b>Føroya Fólkaháskúli</b>, Háskúlavegur 14
+        </div>
       </div>
       <div class="badges">
-        <div class="badge">Crew call: <b>11:00</b></div>
-        <div class="badge">Make-up: <b>13:00–13:30</b></div>
-        <div class="badge">Shoot start: <b>16:00</b></div>
+        <div class="badge">Crew call: <b>07:00</b></div>
+        <div class="badge">Make-up: <b>08:00–08:30</b></div>
+        <div class="badge">Shoot start: <b>09:00</b></div>
+        <div class="badge">Wrap: <b>15:00</b></div>
       </div>
     </header>
 
     <div class="grid">
       <div class="card">
-        <h2>Key info</h2>
-        <div class="meta">
-          <div class="pill"><b>Dato</b>Torsdag 8. januar 2025</div>
-          <div class="pill"><b>Wrap</b>20:00</div>
-          <div class="pill"><b>Main location</b>Tórgarðsgøta 15</div>
-          <div class="pill"><b>Obs</b>Kom i god tid • Sig til ved forsinkelse</div>
-        </div>
+        <h2>Location / key info</h2>
+        <table>
+          <tbody>
+            <tr>
+              <th style="width:180px;">Film location</th>
+              <td><b>Føroya Fólkaháskúli</b><br><span class="muted">Háskúlavegur 14</span></td>
+            </tr>
+            <tr>
+              <th>Dato</th>
+              <td>Søndag 11. januar 2025</td>
+            </tr>
+            <tr>
+              <th>Optagelse</th>
+              <td>Starter kl. <b>09:00</b> • Slutter kl. <b>15:00</b></td>
+            </tr>
+          </tbody>
+        </table>
         <div class="note">
-          • Husk varmt/praktisk tøj hvis du står udenfor mellem takes.<br/>
-          • Hold telefon på lydløs under optagelse.
+          Location bliver endeligt bekræftet af Føroya Fólkaháskúli (forventes bekræftet i dag).
         </div>
       </div>
 
@@ -168,113 +170,63 @@
             <tr>
               <td>Michael Koba</td>
               <td>Producer</td>
-              <td>591011</td>
+              <td>+298 591011</td>
             </tr>
             <tr>
               <td>Thomas Koba</td>
               <td>Fotograf &amp; filmmaker</td>
-              <td>213457</td>
+              <td>+298 213457</td>
             </tr>
             <tr>
               <td>Hans Petur Hansen</td>
-              <td>Lys &amp; fotograf</td>
+              <td>Lys &amp; foto</td>
               <td class="muted">—</td>
             </tr>
           </tbody>
         </table>
-        <div class="note">
-          Ved spørgsmål om mødetider: skriv/ring til Producer.
-        </div>
       </div>
     </div>
 
     <div class="section">
-      <h2>Team / Cast</h2>
+      <h2>Cast / Skuespillere</h2>
       <table>
         <thead>
           <tr>
             <th>Navn</th>
-            <th>Funktion</th>
+            <th>Telefon</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td>Michael Koba</td><td>Producer</td></tr>
-          <tr><td>Thomas Koba</td><td>Fotograf</td></tr>
-          <tr><td>Hans Petur Hansen</td><td>Lys / fotograf</td></tr>
-          <tr><td>Gitte Klein</td><td>Skuespiller</td></tr>
-          <tr><td>Suni Poulsen</td><td>Skuespiller</td></tr>
+          <tr>
+            <td>Suni Poulsen</td>
+            <td>+298 587742</td>
+          </tr>
+          <tr>
+            <td>Gitte Klein</td>
+            <td>+298 730730</td>
+          </tr>
         </tbody>
       </table>
-      <div class="small">Tip: Tilføj flere navne her efter behov.</div>
     </div>
 
     <div class="section">
-      <h2>Schedule (alle tider)</h2>
+      <h2>Tidsplan</h2>
       <table>
         <thead>
           <tr>
             <th style="width:92px;">Tid</th>
-            <th>Punkt</th>
-            <th style="width:190px;">Sted</th>
-            <th style="width:280px;">Hvem</th>
+            <th>Aktivitet</th>
+            <th style="width:260px;">Hvem</th>
+            <th style="width:220px;">Sted</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><b>10:00</b></td>
-            <td>Afhent udstyr <span class="hl">pre-call</span><div class="muted">Gamerstol + computerskærm</div></td>
-            <td>Elding</td>
-            <td>Michael, Thomas</td>
-          </tr>
-          <tr>
-            <td><b>11:00</b></td>
-            <td>Afhent filmvogn <span class="hl">crew call</span><div class="muted">Hans Petur møder • han og Thomas afhenter filmvogn á Hjalla</div></td>
+            <td><b>07:00</b></td>
+            <td>Hans Petur og Thomas møder og afhenter filmvogn á Hjalla <span class="hl">crew call</span></td>
+            <td>Hans Petur Hansen, Thomas Koba</td>
             <td>Hjalla</td>
-            <td>Thomas, Hans Petur</td>
           </tr>
           <tr>
-            <td><b>12:00</b></td>
-            <td>Klargøring af location<div class="muted">Opsæt lys, lyd, kamerabase</div></td>
-            <td>Tórgarðsgøta 15</td>
-            <td>Michael, Thomas, Hans Petur</td>
-          </tr>
-          <tr>
-            <td><b>13:00</b></td>
-            <td>Make-up<div class="muted">Møder til make-up</div></td>
-            <td>Stjørnuskotið</td>
-            <td>Gitte</td>
-          </tr>
-          <tr>
-            <td><b>13:30</b></td>
-            <td>Make-up<div class="muted">Møder til make-up</div></td>
-            <td>Stjørnuskotið</td>
-            <td>Suni</td>
-          </tr>
-          <tr>
-            <td><b>16:00</b></td>
-            <td>Optagelse starter <span class="hl">shoot</span><div class="muted">Hold klar til takes</div></td>
-            <td>Tórgarðsgøta 15</td>
-            <td>Michael, Thomas, Hans Petur, Gitte, Suni</td>
-          </tr>
-          <tr>
-            <td><b>20:00</b></td>
-            <td>SLUT / Wrap <span class="hl">wrap</span><div class="muted">Pak ned • check at alt udstyr er med</div></td>
-            <td>Tórgarðsgøta 15</td>
-            <td>Michael, Thomas, Hans Petur</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="note">
-        • Hvis du bliver forsinket: giv besked med det samme.<br/>
-        • Har du særlige behov (transport/parkering): skriv til Producer senest dagen før.
-      </div>
-    </div>
-
-    <div class="small" style="margin-top:14px;">
-      Version: 1.0
-    </div>
-
-  </div>
-</body>
-</html>
+            <td><b>08:00</b></td>
+            <td>Klargøring af film location <span class="hl">set
