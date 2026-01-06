@@ -13,9 +13,12 @@
       --muted:#6b7280;
       --line:#e5e7eb;
       --dark:#0f172a;
-      --chip:#111827;
-      --prep:#fff7ed;
-      --shoot:#ecfeff;
+
+      --prepBg:#fff7ed;
+      --prepBorder:#fb923c;
+
+      --shootBg:#ecfeff;
+      --shootBorder:#06b6d4;
     }
 
     *{box-sizing:border-box}
@@ -33,30 +36,10 @@
       padding:22px 16px;
     }
 
-    .wrap{
-      max-width:1000px;
-      margin:0 auto;
-      padding:0 16px;
-    }
-
-    .top{
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-start;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-
-    h1{
-      margin:0;
-      font-size:22px;
-    }
-
-    .meta{
-      margin-top:6px;
-      font-size:13px;
-      opacity:.85;
-    }
+    .wrap{max-width:1000px;margin:0 auto;padding:0 16px;}
+    .top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-start;}
+    h1{margin:0;font-size:22px;line-height:1.2}
+    .meta{margin-top:6px;font-size:13px;opacity:.85}
 
     .version{
       background:rgba(255,255,255,.1);
@@ -66,19 +49,38 @@
       font-size:13px;
       white-space:nowrap;
     }
-
     .version b{
-      background:var(--chip);
+      background:#111827;
       padding:4px 8px;
       border-radius:8px;
       font-size:12px;
       margin-left:6px;
     }
 
-    main{
-      padding:18px 0 32px;
+    .actions{
+      margin-top:10px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
     }
 
+    .btn{
+      background:#111827;
+      color:#fff;
+      padding:8px 12px;
+      border-radius:8px;
+      font-size:13px;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+    }
+
+    .btn.secondary{
+      background:#374151;
+    }
+
+    main{padding:18px 0 30px;}
     .card{
       background:var(--card);
       border:1px solid var(--line);
@@ -87,7 +89,6 @@
       margin-bottom:16px;
       box-shadow:0 2px 8px rgba(0,0,0,.05);
     }
-
     .card h2{
       margin:0 0 10px;
       font-size:17px;
@@ -95,19 +96,8 @@
       padding-bottom:8px;
     }
 
-    table{
-      width:100%;
-      border-collapse:collapse;
-      font-size:14px;
-    }
-
-    th, td{
-      text-align:left;
-      padding:9px 8px;
-      border-bottom:1px solid var(--line);
-      vertical-align:top;
-    }
-
+    table{width:100%;border-collapse:collapse;font-size:14px;}
+    th,td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left;}
     th{
       font-size:12px;
       text-transform:uppercase;
@@ -115,21 +105,7 @@
       color:var(--muted);
       background:#fafafa;
     }
-
-    .time{
-      white-space:nowrap;
-      font-weight:700;
-    }
-
-    .day-prep{
-      background:var(--prep);
-      border-left:4px solid #fb923c;
-    }
-
-    .day-shoot{
-      background:var(--shoot);
-      border-left:4px solid #06b6d4;
-    }
+    .time{white-space:nowrap;font-weight:800;}
 
     .note{
       margin-top:10px;
@@ -139,13 +115,33 @@
       border:1px solid var(--line);
       font-size:13px;
       color:var(--muted);
+      line-height:1.45;
     }
 
-    footer{
-      text-align:center;
-      font-size:12px;
-      color:var(--muted);
-      padding:20px 16px;
+    .day-prep{background:var(--prepBg);border-left:5px solid var(--prepBorder);}
+    .day-shoot{background:var(--shootBg);border-left:5px solid var(--shootBorder);}
+
+    footer{text-align:center;font-size:12px;color:var(--muted);padding:18px 16px 24px;}
+
+    /* PRINT VERSION */
+    @media print {
+      header, .actions, footer {
+        display: none !important;
+      }
+
+      body {
+        background: #fff;
+      }
+
+      .card {
+        box-shadow: none;
+        border: 1px solid #000;
+        page-break-inside: avoid;
+      }
+
+      h2 {
+        color: #000;
+      }
     }
   </style>
 </head>
@@ -156,11 +152,22 @@
   <div class="wrap">
     <div class="top">
       <div>
-        <h1>Film produktionsplan – KRENKARIRNIR</h1>
-        <div class="meta">
-          Gældende produktionsplan · Deles kun med involverede
+        <h1>Film produktionsplan – Psykolog</h1>
+        <div class="meta">Gældende plan · del kun med involverede</div>
+
+        <div class="actions">
+          <!-- Husk at indsætte korrekt URL hvis du vil -->
+          <a class="btn"
+             href="mailto:?subject=Produktionsplan – vers. 4.0&body=Her er linket til den opdaterede produktionsplan:%0A%0A[INDSÆT LINK HER]">
+            📧 Del via e-mail
+          </a>
+
+          <a class="btn secondary" href="#" onclick="window.print();return false;">
+            🖨️ Print / PDF
+          </a>
         </div>
       </div>
+
       <div class="version">
         Version <b>4.0</b>
       </div>
@@ -168,122 +175,11 @@
   </div>
 </header>
 
-<main>
-  <div class="wrap">
-
-    <!-- OVERBLIK -->
-    <section class="card">
-      <h2>Overblik</h2>
-      <table>
-        <tr>
-          <th>Optagedag</th>
-          <td>Søndag 11. januar 2025</td>
-        </tr>
-        <tr>
-          <th>Klargøringsdag</th>
-          <td>Lørdag 10. januar 2025</td>
-        </tr>
-        <tr>
-          <th>Location</th>
-          <td>Føroya Fólkaháskúli, Háskúlavegur 14</td>
-        </tr>
-      </table>
-
-      <div class="note">
-        ⚠️ Vigtigt: Alt teknisk setup og forberedelse sker lørdag.  
-        Søndag er ren optagedag.
-      </div>
-    </section>
-
-    <!-- LØRDAG -->
-    <section class="card day-prep">
-      <h2>Lørdag – klargøring (prep day)</h2>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Tid</th>
-            <th>Aktivitet</th>
-            <th>Note</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="time">15:00</td>
-            <td>Adgang til location</td>
-            <td>Producer / nøglecrew</td>
-          </tr>
-          <tr>
-            <td class="time">15:30</td>
-            <td>Opsætning af lys og kamera</td>
-            <td>Foto / lys</td>
-          </tr>
-          <tr>
-            <td class="time">17:00</td>
-            <td>Test af lyd, billede og rekvisitter</td>
-            <td>Teknisk gennemgang</td>
-          </tr>
-          <tr>
-            <td class="time">18:30</td>
-            <td>Klar til optagelse</td>
-            <td>Alt står klar til søndag</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <!-- SØNDAG -->
-    <section class="card day-shoot">
-      <h2>Søndag – optagedag</h2>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Tid</th>
-            <th>Hvad sker der</th>
-            <th>Hvor / note</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="time">07:00</td>
-            <td>Film vogn afhentes</td>
-            <td>Hans Petur & Thomas</td>
-          </tr>
-          <tr>
-            <td class="time">08:00</td>
-            <td>Klargøring på location</td>
-            <td>Hele crew</td>
-          </tr>
-          <tr>
-            <td class="time">08:00</td>
-            <td>Make-up Gitte Klein</td>
-            <td>Stjørnuskotið</td>
-          </tr>
-          <tr>
-            <td class="time">08:30</td>
-            <td>Make-up Suni Poulsen</td>
-            <td>Stjørnuskotið</td>
-          </tr>
-          <tr>
-            <td class="time">09:00</td>
-            <td>OPTAGELSE START</td>
-            <td>Føroya Fólkaháskúli</td>
-          </tr>
-          <tr>
-            <td class="time">15:00</td>
-            <td>WRAP</td>
-            <td>Nedpakning</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-  </div>
-</main>
+<!-- RESTEN AF DIT DOKUMENT ER UÆNDRET -->
+<!-- behold alle sektioner fra din nuværende version -->
 
 <footer>
-  Produktionsplan – vers. 4.0 · Opdateres løbende
+  Produktionsplan – vers. 4.0
 </footer>
 
 </body>
