@@ -45,7 +45,6 @@
       background: rgba(255,255,255,.05);
       white-space:nowrap;
     }
-
     .grid{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -55,7 +54,7 @@
     @media(max-width:900px){
       .grid{grid-template-columns:1fr}
     }
-    .card{
+    .card, .section{
       border:1px solid var(--line);
       background: rgba(17,26,46,.70);
       border-radius:18px;
@@ -93,13 +92,7 @@
       color:var(--muted);
       font-size:13px;
     }
-    .section{
-      margin-top:14px;
-      border:1px solid var(--line);
-      background: rgba(17,26,46,.70);
-      border-radius:18px;
-      padding:16px;
-    }
+    .section{margin-top:14px}
     .small{font-size:12px;color:var(--muted)}
     .hl{
       display:inline-block;
@@ -111,6 +104,10 @@
       color:var(--text);
       margin-left:6px;
     }
+    .time{
+      font-weight:800;
+      white-space:nowrap;
+    }
   </style>
 </head>
 
@@ -119,16 +116,16 @@
 
     <header>
       <div>
-        <h1>FILM PRODUKTIONSPLAN <span class="hl">ver. 3.0</span></h1>
+        <h1>FILM PRODUKTIONSPLAN <span class="hl">vers. 3.0</span></h1>
         <div class="sub">
-          <b>Søndag 11. januar 2025</b> • Location: <b>Føroya Fólkaháskúli</b>, Háskúlavegur 14
+          <b>Søndag 11. jan 2025</b> • Location: <b>Føroya Fólkaháskúli</b>, Háskúlavegur 14
         </div>
       </div>
       <div class="badges">
         <div class="badge">Crew call: <b>07:00</b></div>
         <div class="badge">Make-up: <b>08:00–08:30</b></div>
         <div class="badge">Shoot start: <b>09:00</b></div>
-        <div class="badge">Wrap: <b>15:00</b></div>
+        <div class="badge">Slut: <b>15:00</b></div>
       </div>
     </header>
 
@@ -143,21 +140,21 @@
             </tr>
             <tr>
               <th>Dato</th>
-              <td>Søndag 11. januar 2025</td>
+              <td>Søndag 11. jan 2025</td>
             </tr>
             <tr>
-              <th>Optagelse</th>
-              <td>Starter kl. <b>09:00</b> • Slutter kl. <b>15:00</b></td>
+              <th>Optagetid</th>
+              <td>Optagelse starter <b>09:00</b> • Slutter <b>15:00</b></td>
             </tr>
           </tbody>
         </table>
         <div class="note">
-          Location bliver endeligt bekræftet af Føroya Fólkaháskúli (forventes bekræftet i dag).
+          Location bliver endeligt bekræftet af Føroya Fólkaháskúli (forventes bekræftet i dag). <span class="muted">(jf. planen)</span>
         </div>
       </div>
 
       <div class="card">
-        <h2>Contacts</h2>
+        <h2>Contacts / Crew</h2>
         <table>
           <thead>
             <tr>
@@ -184,49 +181,127 @@
             </tr>
           </tbody>
         </table>
+
+        <h2 style="margin-top:14px;">Cast</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Navn</th>
+              <th>Telefon</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Suni Poulsen</td>
+              <td>+298 587742</td>
+            </tr>
+            <tr>
+              <td>Gitte Klein</td>
+              <td>+298 730730</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
     <div class="section">
-      <h2>Cast / Skuespillere</h2>
+      <h2>Hele dagsprogrammet</h2>
       <table>
         <thead>
           <tr>
-            <th>Navn</th>
-            <th>Telefon</th>
+            <th style="width:90px;">Tid</th>
+            <th>Hvad sker der?</th>
+            <th style="width:320px;">Hvem</th>
+            <th style="width:240px;">Sted</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="time">07:00</td>
+            <td>Hans Petur og Thomas møder og afhenter filmvogn á Hjalla <span class="hl">crew call</span></td>
+            <td>Hans Petur Hansen, Thomas Koba</td>
+            <td>Hjalla</td>
+          </tr>
+
+          <tr>
+            <td class="time">08:00</td>
+            <td>Klargøring af film location <span class="hl">setup</span></td>
+            <td>Thomas Koba, Michael Koba, Hans Petur Hansen</td>
+            <td>Føroya Fólkaháskúli</td>
+          </tr>
+
+          <tr>
+            <td class="time">08:00</td>
+            <td>Gitte Klein møder til make-up <span class="hl">make-up</span></td>
+            <td>Gitte Klein</td>
+            <td>Stjørnuskotið</td>
+          </tr>
+
+          <tr>
+            <td class="time">08:30</td>
+            <td>Suni Poulsen møder til make-up <span class="hl">make-up</span></td>
+            <td>Suni Poulsen</td>
+            <td>Stjørnuskotið</td>
+          </tr>
+
+          <tr>
+            <td class="time">08:45</td>
+            <td>Rundstykker og kaffe på sættet <span class="hl">catering</span></td>
+            <td>Alle</td>
+            <td>På location</td>
+          </tr>
+
+          <tr>
+            <td class="time">09:00</td>
+            <td>Optagelse påbegyndes <span class="hl">shoot</span></td>
+            <td>Alle</td>
+            <td>Føroya Fólkaháskúli</td>
+          </tr>
+
+          <tr>
+            <td class="time">15:00</td>
+            <td>SLUT <span class="hl">wrap</span></td>
+            <td>Alle (crew pakker ned)</td>
+            <td>Føroya Fólkaháskúli</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="note">
+        Hvis du vil have pauser / frokost tydeligt ind i planen, så skal de tidspunkter skrives ind i dokumentet – ellers risikerer vi at opfinde noget, der ikke er aftalt.
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Rekvisitter / kostume</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Hvem / hvad</th>
+            <th>Aftale</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>Suni Poulsen</td>
-            <td>+298 587742</td>
+            <td>Møder i <b>mørkt jakkesæt</b></td>
           </tr>
           <tr>
             <td>Gitte Klein</td>
-            <td>+298 730730</td>
+            <td>Møder i <b>lyst tøj</b> (i henhold til aftale med producer, Michael Koba)</td>
+          </tr>
+          <tr>
+            <td>Props</td>
+            <td>Buet computerskærm og gamerstol</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <div class="section">
-      <h2>Tidsplan</h2>
-      <table>
-        <thead>
-          <tr>
-            <th style="width:92px;">Tid</th>
-            <th>Aktivitet</th>
-            <th style="width:260px;">Hvem</th>
-            <th style="width:220px;">Sted</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><b>07:00</b></td>
-            <td>Hans Petur og Thomas møder og afhenter filmvogn á Hjalla <span class="hl">crew call</span></td>
-            <td>Hans Petur Hansen, Thomas Koba</td>
-            <td>Hjalla</td>
-          </tr>
-          <tr>
-            <td><b>08:00</b></td>
-            <td>Klargøring af film location <span class="hl">set
+    <div class="small" style="margin-top:14px;">
+      Kilde: “Produktionsplan 2.0” :contentReference[oaicite:1]{index=1} • Web-version: 1.0
+    </div>
+
+  </div>
+</body>
+</html>
